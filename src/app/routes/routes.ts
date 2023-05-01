@@ -5,7 +5,6 @@ import { RegisterPageComponent } from '../register-page/register-page.component'
 import { UserPageComponent } from '../user-page/user-page.component';
 import { ResetPassPageComponent } from '../reset-pass-page/reset-pass-page.component';
 import { QrcodeComponent } from '../qrcode/qrcode.component';
-import { UploadImagesComponent } from '../upload-images/upload-images.component';
 
 export const routes: Routes = [
   {
@@ -32,10 +31,6 @@ export const routes: Routes = [
   {
     path: 'qrcode',
     component: QrcodeComponent,
-  },
-  {
-    path: 'upload',
-    component: UploadImagesComponent,
   },
   {
     path: '**',

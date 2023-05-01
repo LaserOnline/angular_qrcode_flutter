@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { PathApi } from '../api/config.api';
 import { UserService } from '../service/user.service';
 @Component({
@@ -24,7 +28,6 @@ export class QrcodeComponent implements OnInit {
       const user = JSON.parse(DataUser);
       this.email = user.Email;
       this.QrCode(this.email);
-      // this.qrcode.QrCode(this.email);
     } else {
       this.router.navigate(['loginPage']);
     }
@@ -35,13 +38,19 @@ export class QrcodeComponent implements OnInit {
   }
 
   QrCode(email: string) {
-    // console.log(email);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `${this.pathApi.header}`,
+      }),
+    };
     return this.http
       .post<{ Message: string; StatusCode: number }>(
         this.pathApi.api_path_generateqrcode,
         {
           email,
-        }
+        },
+        httpOptions
       )
       .subscribe({
         next: (response) => {

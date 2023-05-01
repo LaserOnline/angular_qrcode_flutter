@@ -11,7 +11,7 @@ import { OopsPageComponent } from './oops-page/oops-page.component';
 import { ResetPassPageComponent } from './reset-pass-page/reset-pass-page.component';
 import { QrcodeComponent } from './qrcode/qrcode.component';
 import { QRCodeModule } from 'angularx-qrcode';
-import { UploadImagesComponent } from './upload-images/upload-images.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +21,6 @@ import { UploadImagesComponent } from './upload-images/upload-images.component';
     OopsPageComponent,
     ResetPassPageComponent,
     QrcodeComponent,
-    UploadImagesComponent,
   ],
   imports: [
     BrowserModule,

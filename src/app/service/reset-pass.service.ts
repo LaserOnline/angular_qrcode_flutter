@@ -12,10 +12,17 @@ export class ResetPassService {
   constructor(private http: HttpClient, private router: Router) {}
 
   async resetPass(email: string, pass: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `${this.pathApi.header}`,
+      }),
+    };
     return this.http
       .put<{ Message: string; StatusCode: number }>(
         this.pathApi.api_path_reset,
-        { email, pass }
+        { email, pass },
+        httpOptions
       )
       .subscribe({
         next: (response) => {

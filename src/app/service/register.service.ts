@@ -12,7 +12,7 @@ export class RegisterService {
   private pathApi = new PathApi();
   constructor(private http: HttpClient, private router: Router) {}
 
-  registerService(
+  async registerService(
     id_card: string,
     fname: string,
     lname: string,
@@ -20,6 +20,12 @@ export class RegisterService {
     address: string,
     pass: string
   ) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `${this.pathApi.header}`,
+      }),
+    };
     return this.http
       .post<{ Message: string; StatusCode: number }>(
         this.pathApi.api_path_register,
@@ -30,7 +36,8 @@ export class RegisterService {
           fname,
           lname,
           address,
-        }
+        },
+        httpOptions
       )
       .subscribe({
         next: (response) => {

@@ -21,13 +21,20 @@ export class LoginService {
   ) {}
 
   async login(email: string, pass: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `${this.pathApi.header}`,
+      }),
+    };
     return this.http
       .post<{ Message: string; StatusCode: number }>(
         this.pathApi.api_path_login,
         {
           email,
           pass,
-        }
+        },
+        httpOptions
       )
       .subscribe({
         next: (response) => {
@@ -35,6 +42,8 @@ export class LoginService {
             const userJson = JSON.stringify(response.Message[0]);
             this.userService.setUser(userJson);
             this.router.navigate(['userPage']);
+          } else {
+            console.log(response);
           }
         },
         error: (error) => {

@@ -11,14 +11,32 @@
                 border-bottom-left-radius: 0.5rem;
               "
             >
-              <a href="upload">
-                <img
-                  [src]="url"
-                  alt="Avatar"
-                  class="img-fluid my-5"
-                  style="width: 80px"
+              <img
+                [src]="url"
+                alt="Avatar"
+                class="img-thumbnail"
+                style="width: 256px"
+              />
+              <div>
+                <input
+                  class="form-control"
+                  type="file"
+                  (change)="SelectFile($event)"
                 />
-              </a>
+                <button
+                  *ngIf="selectedFile != null"
+                  (click)="Upload()"
+                  type="button"
+                  class="btn btn-info"
+                  style="
+                    --bs-btn-padding-y: 0.25rem;
+                    --bs-btn-padding-x: 0.5rem;
+                    --bs-btn-font-size: 0.75rem;
+                  "
+                >
+                  Upload
+                </button>
+              </div>
               <h5>
                 <i class="far fa-edit mb-5"> ชื่อ {{ fname }} </i>
               </h5>
